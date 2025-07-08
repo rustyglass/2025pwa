@@ -1,0 +1,32 @@
+{
+  "name": "2025 Reading Challenge",
+  "short_name": "2025 Reading",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#247182",
+  "theme_color": "#247182",
+  "description": "2025 Reading Challenge web app",
+  "icons": [
+    {
+      "src": "https://cdn.glitch.global/322f0f24-3e28-4f9a-8ca5-b48819892fea/icon-192x192.png?v=1723049999866",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.global/322f0f24-3e28-4f9a-8ca5-b48819892fea/icon-512x512.png?v=1723050522183",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.global/322f0f24-3e28-4f9a-8ca5-b48819892fea/icon-256x256.png?v=1723050228465",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.global/322f0f24-3e28-4f9a-8ca5-b48819892fea/icon-384x384.png?v=1723050120528",
+      "sizes": "384x384",
+      "type": "image/png"
+    }
+  ]
+}
+
