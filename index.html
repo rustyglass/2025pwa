@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 Reading Challenge</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="2025 Reading Challenge">
+  <meta name="theme-color" content="#247182">
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.glitch.global/322f0f24-3e28-4f9a-8ca5-b48819892fea/icon-192x192.png?v=1723049999866">
+  
+  <!-- Windows Tiles -->
+  <meta name="msapplication-TileColor" content="#247182">
+  <meta name="msapplication-TileImage" content="https://cdn.glitch.global/322f0f24-3e28-4f9a-8ca5-b48819892fea/icon-256x256.png?v=1723050228465">
+  
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+    .message {
+      font-size: 20px;
+      text-align: center;
+    }
+    #offlineMessage {
+      display: none;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="message" id="loadingMessage">
+    Checking connection status...
+  </div>
+  <div id="offlineMessage" class="message">
+    You are not connected to the internet. Please check your connection and try again.
+  </div>
+  <div id="standaloneMessage" class="message" style="display:none;">
+    Please add this app to your home screen.
+  </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      }).catch(function(error) {
+        console.log('Service Worker registration failed:', error);
+      });
+    }
+
+    function updateOnlineStatus() {
+      if (navigator.onLine) {
+        document.getElementById('offlineMessage').style.display = 'none';
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+          document.getElementById('loadingMessage').innerText = 'Redirecting to 2025 Reading Challenge...';
+          // Delay the redirect slightly to ensure the page updates
+          setTimeout(function() {
+            window.location.replace("https://2025.readingchallenge.online");
+          }, 1000);
+        } else {
+          document.getElementById('loadingMessage').style.display = 'none';
+          document.getElementById('standaloneMessage').style.display = 'block';
+        }
+      } else {
+        document.getElementById('loadingMessage').style.display = 'none';
+        document.getElementById('standaloneMessage').style.display = 'none';
+        document.getElementById('offlineMessage').style.display = 'block';
+      }
+    }
+
+    // Check initial status
+    updateOnlineStatus();
+
+    // Listen for online and offline events
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+  </script>
+</body>
+</html>
+
